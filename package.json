@@ -1,0 +1,15 @@
+{
+  "name": "file-system-shaper",
+  "version": "0.1.0",
+  "description": "Analyze a file tree, derive a target shape, and reshape files plus relative imports into the desired structure.",
+  "type": "module",
+  "bin": {
+    "file-system-shaper": "./src/cli.js"
+  },
+  "scripts": {
+    "start": "node ./src/cli.js",
+    "analyze": "node ./src/cli.js analyze",
+    "shape": "node ./src/cli.js shape",
+    "reshape": "node ./src/cli.js reshape"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "ignoredDirectories": [".git", "node_modules", "dist", "build", "coverage", "__pycache__", ".venv", "venv"],
+  "context": {
+    "hotFileLimit": 10
+  },
+  "languages": [
+    {
+      "name": "javascript",
+      "extensions": [".js", ".cjs", ".mjs", ".ts", ".cts", ".mts", ".jsx", ".tsx"],
+      "moduleStyle": "javascript",
+      "scanner": "../src/scanners/javascript.js",
+      "resolutionExtensions": [".js", ".cjs", ".mjs", ".ts", ".cts", ".mts", ".jsx", ".tsx"],
+      "indexFiles": ["index.js", "index.cjs", "index.mjs", "index.ts", "index.cts", "index.mts", "index.jsx", "index.tsx"],
+      "patterns": [
+        { "kind": "import-from", "regex": "import\\s+(?:type\\s+)?(?:[^'\\\"]*?\\s+from\\s+)?[\"']([^\"']+)[\"']" },
+        { "kind": "export-from", "regex": "export\\s+[^\"']*?\\s+from\\s+[\"']([^\"']+)[\"']" },
+        { "kind": "require", "regex": "require\\s*\\(\\s*[\"']([^\"']+)[\"']\\s*\\)" },
+        { "kind": "dynamic-import", "regex": "import\\s*\\(\\s*[\"']([^\"']+)[\"']\\s*\\)" }
+      ]
+    },
+    {
+      "name": "python",
+      "extensions": [".py"],
+      "moduleStyle": "python",
+      "scanner": "../src/scanners/python.js",
+      "resolutionExtensions": [".py"],
+      "indexFiles": ["__init__.py"],
+      "patterns": [
+        { "kind": "from-import", "regex": "^\\s*from\\s+([.\\w]+)\\s+import\\s+.+$", "flags": "gm" },
+        { "kind": "import", "regex": "^\\s*import\\s+([.\\w]+)(?:\\s+as\\s+\\w+)?(?:\\s*,\\s*[.\\w]+(?:\\s+as\\s+\\w+)?)?$", "flags": "gm" }
+      ]
+    }
+  ]
+}

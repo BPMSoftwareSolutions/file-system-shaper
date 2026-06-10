@@ -1,0 +1,26 @@
+{
+  "root": ".",
+  "directories": [
+    "config",
+    "src",
+    "src/lib",
+    "src/scanners"
+  ],
+  "files": [
+    "config/fabric.json",
+    "package.json",
+    "README.md",
+    "src/cli.js",
+    "src/lib/analysis.js",
+    "src/lib/context.js",
+    "src/lib/fabric.js",
+    "src/lib/import-resolution.js",
+    "src/lib/reshape.js",
+    "src/lib/scan-patterns.js",
+    "src/lib/scanner-registry.js",
+    "src/lib/shape.js",
+    "src/scanners/javascript.js",
+    "src/scanners/python.js"
+  ],
+  "moves": []
+}
