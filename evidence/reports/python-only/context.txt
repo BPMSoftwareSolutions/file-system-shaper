@@ -1,0 +1,35 @@
+Root: C:\Users\SIDNEY~1\AppData\Local\Temp\file-system-shaper-HesyqO\workspace
+
+Taxonomy:
+  `-- pkg/
+     |-- __init__.py
+     |-- main.py [2]
+     `-- services/
+        |-- __init__.py
+        |-- helpers/
+        |  |-- __init__.py
+        |  `-- formatter.py
+        |-- report_service.py [1]
+        `-- user_service.py [1]
+
+Signals:
+  Directories: 3
+  Files: 7
+  Code files: 7
+  Dependencies: 4
+  Hot file limit: 10
+
+Hot Files:
+  pkg/services/helpers/formatter.py [in:2 out:0]
+  pkg/services/report_service.py [in:1 out:1]
+  pkg/services/user_service.py [in:1 out:1]
+  pkg/main.py [in:0 out:2]
+  pkg/__init__.py [in:0 out:0]
+  pkg/services/__init__.py [in:0 out:0]
+  pkg/services/helpers/__init__.py [in:0 out:0]
+
+Agent Instructions:
+  - Use the taxonomy as the canonical map of the current tree.
+  - Prefer moving files over editing their contents when a target shape only changes location.
+  - Recompute relative imports only for files affected by a move or rename.
+  - Treat high-signal files as the main dependency hubs when deciding what must be rewritten.

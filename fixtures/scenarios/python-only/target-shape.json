@@ -1,0 +1,23 @@
+{
+  "root": ".",
+  "directories": [
+    "pkg",
+    "pkg/domain",
+    "pkg/domain/helpers"
+  ],
+  "files": [
+    "pkg/__init__.py",
+    "pkg/main.py",
+    "pkg/domain/__init__.py",
+    "pkg/domain/user_service.py",
+    "pkg/domain/report_service.py",
+    "pkg/domain/helpers/__init__.py",
+    "pkg/domain/helpers/formatter.py"
+  ],
+  "moves": [
+    {
+      "from": "pkg/services",
+      "to": "pkg/domain"
+    }
+  ]
+}

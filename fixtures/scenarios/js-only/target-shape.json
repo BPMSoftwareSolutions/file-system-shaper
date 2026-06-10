@@ -1,0 +1,19 @@
+{
+  "root": ".",
+  "directories": [
+    "src",
+    "src/core"
+  ],
+  "files": [
+    "src/app.js",
+    "src/core/index.js",
+    "src/core/format.js",
+    "src/core/math.js"
+  ],
+  "moves": [
+    {
+      "from": "src/lib",
+      "to": "src/core"
+    }
+  ]
+}

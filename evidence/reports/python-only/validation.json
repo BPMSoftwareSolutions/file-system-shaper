@@ -1,0 +1,33 @@
+{
+  "directoriesMatch": true,
+  "filesMatch": true,
+  "actualDirectories": [
+    "pkg",
+    "pkg/domain",
+    "pkg/domain/helpers"
+  ],
+  "actualFiles": [
+    "pkg/__init__.py",
+    "pkg/domain/__init__.py",
+    "pkg/domain/helpers/__init__.py",
+    "pkg/domain/helpers/formatter.py",
+    "pkg/domain/report_service.py",
+    "pkg/domain/user_service.py",
+    "pkg/main.py"
+  ],
+  "targetDirectories": [
+    "pkg",
+    "pkg/domain",
+    "pkg/domain/helpers"
+  ],
+  "targetFiles": [
+    "pkg/__init__.py",
+    "pkg/domain/__init__.py",
+    "pkg/domain/helpers/__init__.py",
+    "pkg/domain/helpers/formatter.py",
+    "pkg/domain/report_service.py",
+    "pkg/domain/user_service.py",
+    "pkg/main.py"
+  ],
+  "rewrittenFiles": 1
+}

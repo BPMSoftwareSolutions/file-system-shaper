@@ -1,0 +1,25 @@
+{
+  "directoriesMatch": true,
+  "filesMatch": true,
+  "actualDirectories": [
+    "src",
+    "src/core"
+  ],
+  "actualFiles": [
+    "src/app.js",
+    "src/core/format.js",
+    "src/core/index.js",
+    "src/core/math.js"
+  ],
+  "targetDirectories": [
+    "src",
+    "src/core"
+  ],
+  "targetFiles": [
+    "src/app.js",
+    "src/core/format.js",
+    "src/core/index.js",
+    "src/core/math.js"
+  ],
+  "rewrittenFiles": 1
+}

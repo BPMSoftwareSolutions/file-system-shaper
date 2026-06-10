@@ -1,0 +1,53 @@
+{
+  "directoriesMatch": true,
+  "filesMatch": true,
+  "actualDirectories": [
+    "service",
+    "service/app",
+    "service/app/domain",
+    "service/app/domain/steps",
+    "web",
+    "web/src",
+    "web/src/core",
+    "web/src/core/widgets"
+  ],
+  "actualFiles": [
+    "service/app/__init__.py",
+    "service/app/domain/__init__.py",
+    "service/app/domain/pipeline.py",
+    "service/app/domain/steps/__init__.py",
+    "service/app/domain/steps/collector.py",
+    "service/app/main.py",
+    "web/src/core/api.js",
+    "web/src/core/codec.js",
+    "web/src/core/widgets/chart.js",
+    "web/src/core/widgets/index.js",
+    "web/src/core/widgets/table.js",
+    "web/src/index.js"
+  ],
+  "targetDirectories": [
+    "service",
+    "service/app",
+    "service/app/domain",
+    "service/app/domain/steps",
+    "web",
+    "web/src",
+    "web/src/core",
+    "web/src/core/widgets"
+  ],
+  "targetFiles": [
+    "service/app/__init__.py",
+    "service/app/domain/__init__.py",
+    "service/app/domain/pipeline.py",
+    "service/app/domain/steps/__init__.py",
+    "service/app/domain/steps/collector.py",
+    "service/app/main.py",
+    "web/src/core/api.js",
+    "web/src/core/codec.js",
+    "web/src/core/widgets/chart.js",
+    "web/src/core/widgets/index.js",
+    "web/src/core/widgets/table.js",
+    "web/src/index.js"
+  ],
+  "rewrittenFiles": 2
+}

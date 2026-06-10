@@ -8,6 +8,12 @@ function normalize(value) {
   return path.normalize(value).split(path.sep).join("/").replace(/^\.\//, "");
 }
 
+function isUnderSource(rel, source) {
+  const normalizedRel = normalize(rel);
+  const normalizedSource = normalize(source);
+  return normalizedRel === normalizedSource || normalizedRel.startsWith(`${normalizedSource}/`);
+}
+
 function groupDependenciesBySource(dependencies) {
   const map = new Map();
   for (const dependency of dependencies) {
@@ -63,7 +69,7 @@ export async function planReshape(folderPath, targetShape) {
     if (node.kind !== "directory") continue;
     const rel = normalize(node.relPath);
     if (rel === "." || rel === "") continue;
-    if (moveSources.has(rel)) continue;
+    if ([...moveSources].some((source) => isUnderSource(rel, source))) continue;
     if (targetPaths.includes(rel)) {
       claimedTargets.add(rel);
       continue;
@@ -91,8 +97,8 @@ export async function planReshape(folderPath, targetShape) {
   for (const node of flattened) {
     if (node.kind !== "file") continue;
     const rel = normalize(node.relPath);
-    if (moveSources.has(rel)) continue;
-    if (moves.some((move) => rel === move.fromRel || rel.startsWith(`${move.fromRel}/`))) continue;
+    if ([...moveSources].some((source) => isUnderSource(rel, source))) continue;
+    if (moves.some((move) => isUnderSource(rel, move.fromRel))) continue;
     if (targetPaths.includes(rel)) {
       claimedTargets.add(rel);
       continue;
@@ -115,6 +121,20 @@ export async function planReshape(folderPath, targetShape) {
     });
     claimedTargets.add(nextTarget);
     moveSources.add(rel);
+  }
+
+  for (const move of moves) {
+    const fromRel = normalize(move.fromRel);
+    const toRel = normalize(move.toRel);
+    for (const node of flattened) {
+      const nodeRel = normalize(node.relPath);
+      if (nodeRel !== fromRel && !nodeRel.startsWith(`${fromRel}/`)) continue;
+      const suffix = nodeRel === fromRel ? "" : nodeRel.slice(fromRel.length + 1);
+      const mapped = suffix ? normalize(path.posix.join(toRel, suffix)) : toRel;
+      if (targetPaths.includes(mapped)) {
+        claimedTargets.add(mapped);
+      }
+    }
   }
 
   const missingTargets = targetPaths.filter((target) => !claimedTargets.has(target));
@@ -158,10 +178,27 @@ async function rewriteImportsAfterMove(plan, fabric, registry) {
   const dependencyBySource = groupDependenciesBySource(plan.analysisBefore.dependencies);
   const movedTargets = new Map();
   const currentToOriginalSource = new Map();
+  const originalNodes = [];
+
+  const flattenOriginal = (nodes) => {
+    for (const node of nodes) {
+      originalNodes.push(node);
+      if (node.kind === "directory") flattenOriginal(node.children);
+    }
+  };
+  flattenOriginal(plan.analysisBefore.tree);
 
   for (const move of plan.moves) {
-    movedTargets.set(path.resolve(move.from), path.resolve(move.to));
-    currentToOriginalSource.set(normalize(move.to), move.fromRel);
+    const fromRel = normalize(move.fromRel);
+    const toRel = normalize(move.toRel);
+    for (const node of originalNodes) {
+      const nodeRel = normalize(node.relPath);
+      if (nodeRel !== fromRel && !nodeRel.startsWith(`${fromRel}/`)) continue;
+      const suffix = nodeRel === fromRel ? "" : nodeRel.slice(fromRel.length + 1);
+      const currentRel = suffix ? normalize(path.posix.join(toRel, suffix)) : toRel;
+      movedTargets.set(path.resolve(plan.root, nodeRel), path.resolve(plan.root, currentRel));
+      currentToOriginalSource.set(path.resolve(plan.root, currentRel), node.relPath);
+    }
   }
 
   let changedFiles = 0;
@@ -176,7 +213,7 @@ async function rewriteImportsAfterMove(plan, fabric, registry) {
       if (!scannerEntry) continue;
 
       const source = await readFile(node.absPath, "utf8");
-      const originalRel = currentToOriginalSource.get(normalize(node.absPath)) ?? node.relPath;
+      const originalRel = currentToOriginalSource.get(path.resolve(node.absPath)) ?? node.relPath;
       const dependencies = dependencyBySource.get(originalRel) ?? [];
       const result = await scannerEntry.scanner.rewriteFile({
         source,

@@ -1,0 +1,20 @@
+|-- service/
+|  `-- app/
+|     |-- __init__.py
+|     |-- domain/
+|     |  |-- __init__.py
+|     |  |-- pipeline.py [imports: 1]
+|     |  `-- steps/
+|     |     |-- __init__.py
+|     |     `-- collector.py
+|     `-- main.py [imports: 2]
+`-- web/
+   `-- src/
+      |-- core/
+      |  |-- api.js [imports: 1]
+      |  |-- codec.js
+      |  `-- widgets/
+      |     |-- chart.js
+      |     |-- index.js [imports: 2]
+      |     `-- table.js
+      `-- index.js [imports: 2]

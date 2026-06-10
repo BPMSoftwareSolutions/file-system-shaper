@@ -1,5 +1,5 @@
 {
-  "ignoredDirectories": [".git", "node_modules", "dist", "build", "coverage", "__pycache__", ".venv", "venv"],
+  "ignoredDirectories": [".git", "node_modules", "dist", "build", "coverage", "__pycache__", ".venv", "venv", "fixtures", "evidence", "tmp"],
   "context": {
     "hotFileLimit": 10
   },

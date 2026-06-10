@@ -1,0 +1,10 @@
+`-- pkg/
+   |-- __init__.py
+   |-- domain/
+   |  |-- __init__.py
+   |  |-- helpers/
+   |  |  |-- __init__.py
+   |  |  `-- formatter.py
+   |  |-- report_service.py [imports: 1]
+   |  `-- user_service.py [imports: 1]
+   `-- main.py [imports: 2]

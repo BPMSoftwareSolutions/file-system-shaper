@@ -1,0 +1,48 @@
+Root: C:\Users\SIDNEY~1\AppData\Local\Temp\file-system-shaper-9aOyoH\workspace
+
+Taxonomy:
+  |-- service/
+  |  `-- app/
+  |     |-- __init__.py
+  |     |-- legacy/
+  |     |  |-- __init__.py
+  |     |  |-- pipeline.py [1]
+  |     |  `-- steps/
+  |     |     |-- __init__.py
+  |     |     `-- collector.py
+  |     `-- main.py [2]
+  `-- web/
+     `-- src/
+        |-- index.js [2]
+        `-- legacy/
+           |-- api.js [1]
+           |-- codec.js
+           `-- widgets/
+              |-- chart.js
+              |-- index.js [2]
+              `-- table.js
+
+Signals:
+  Directories: 8
+  Files: 12
+  Code files: 12
+  Dependencies: 8
+  Hot file limit: 10
+
+Hot Files:
+  service/app/legacy/steps/collector.py [in:2 out:0]
+  web/src/legacy/widgets/index.js [in:1 out:2]
+  service/app/legacy/pipeline.py [in:1 out:1]
+  web/src/legacy/api.js [in:1 out:1]
+  web/src/legacy/codec.js [in:1 out:0]
+  web/src/legacy/widgets/chart.js [in:1 out:0]
+  web/src/legacy/widgets/table.js [in:1 out:0]
+  service/app/main.py [in:0 out:2]
+  web/src/index.js [in:0 out:2]
+  service/app/__init__.py [in:0 out:0]
+
+Agent Instructions:
+  - Use the taxonomy as the canonical map of the current tree.
+  - Prefer moving files over editing their contents when a target shape only changes location.
+  - Recompute relative imports only for files affected by a move or rename.
+  - Treat high-signal files as the main dependency hubs when deciding what must be rewritten.

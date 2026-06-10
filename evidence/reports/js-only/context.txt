@@ -1,0 +1,28 @@
+Root: C:\Users\SIDNEY~1\AppData\Local\Temp\file-system-shaper-VociH9\workspace
+
+Taxonomy:
+  `-- src/
+     |-- app.js [2]
+     `-- lib/
+        |-- format.js
+        |-- index.js [2]
+        `-- math.js
+
+Signals:
+  Directories: 2
+  Files: 4
+  Code files: 4
+  Dependencies: 4
+  Hot file limit: 10
+
+Hot Files:
+  src/lib/index.js [in:2 out:2]
+  src/lib/format.js [in:1 out:0]
+  src/lib/math.js [in:1 out:0]
+  src/app.js [in:0 out:2]
+
+Agent Instructions:
+  - Use the taxonomy as the canonical map of the current tree.
+  - Prefer moving files over editing their contents when a target shape only changes location.
+  - Recompute relative imports only for files affected by a move or rename.
+  - Treat high-signal files as the main dependency hubs when deciding what must be rewritten.

@@ -34,6 +34,11 @@ function renderTree(nodes, prefix = "") {
   return lines;
 }
 
+export function renderTreeSketch(analysis) {
+  if (analysis.tree.length === 0) return "(empty)";
+  return renderTree(analysis.tree, "").join("\n");
+}
+
 async function walkFolder({ rootAbs, currentAbs, nodes, dependencyEdges, fabric, registry }) {
   const entries = await readdir(currentAbs, { withFileTypes: true });
   entries.sort((a, b) => a.name.localeCompare(b.name));

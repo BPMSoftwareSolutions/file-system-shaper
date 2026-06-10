@@ -14,6 +14,7 @@ An internal experiment for:
 ```bash
 node src/cli.js analyze <folder>
 node src/cli.js context <folder>
+node src/cli.js evidence
 node src/cli.js shape <folder> --output target-shape.json
 node src/cli.js reshape <folder> --shape target-shape.json
 ```
@@ -27,6 +28,24 @@ The `context` command is the retrieval pack for the agent. It compresses the tre
 - `src/lib/analysis.js` uses the fabric and scanner registry to build the tree and dependency graph.
 - `src/lib/context.js` turns that graph into retrieval context for the agent.
 - `src/lib/reshape.js` uses the original dependency map plus move targets to rewrite imports after a reshape.
+- `fixtures/scenarios/` contains the proof fixtures and target shapes.
+- `evidence/reports/` receives the generated before/after reports for each proof scenario.
+
+## Evidence Suite
+
+Run `node src/cli.js evidence` to execute the full proof set:
+
+- `js-only` for a pure JavaScript directory move
+- `python-only` for a pure Python package move
+- `mixed-chaos` for a mixed JavaScript and Python tree with two independent subtree moves
+
+Each report captures:
+
+- The seeded retrieval packet
+- The before ASCII sketch
+- The planned move set
+- The after ASCII sketch
+- Validation that the final shape matches the target manifest
 
 ## Target shape format
 

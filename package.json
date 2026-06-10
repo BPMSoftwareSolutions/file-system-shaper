@@ -10,6 +10,7 @@
     "start": "node ./src/cli.js",
     "analyze": "node ./src/cli.js analyze",
     "shape": "node ./src/cli.js shape",
-    "reshape": "node ./src/cli.js reshape"
+    "reshape": "node ./src/cli.js reshape",
+    "evidence": "node ./src/cli.js evidence"
   }
 }

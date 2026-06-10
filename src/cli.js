@@ -4,6 +4,7 @@ import { writeFile } from "node:fs/promises";
 import path from "node:path";
 import { analyzeFolder, renderAnalysisReport } from "./lib/analysis.js";
 import { buildRetrievalContext, renderRetrievalContext, renderRetrievalPrompt } from "./lib/context.js";
+import { runEvidenceSuite } from "./lib/evidence.js";
 import { loadTargetShape, generateShapeManifest } from "./lib/shape.js";
 import { planReshape, applyReshape } from "./lib/reshape.js";
 
@@ -14,12 +15,14 @@ file-system-shaper
 Usage:
   file-system-shaper analyze <folder> [--json]
   file-system-shaper context <folder> [--json|--prompt]
+  file-system-shaper evidence [--scenario <id>] [--output <dir>] [--json]
   file-system-shaper shape <folder> --output <shape.json>
   file-system-shaper reshape <folder> --shape <shape.json> [--dry-run]
 
 Commands:
   analyze   Walk a folder and print an ASCII sketch plus dependency summary.
   context   Build the retrieval pack used to seed the agent context.
+  evidence  Run the proof fixtures and write before/after reports.
   shape     Emit a target-shape manifest from the current tree.
   reshape   Move files and rewrite internal imports to match a target shape.
 `);
@@ -83,6 +86,23 @@ async function main() {
       return;
     }
     process.stdout.write(`${renderRetrievalContext(context)}\n`);
+    return;
+  }
+
+  if (command === "evidence") {
+    const scenarioId = options.scenario;
+    const output = options.output;
+    const results = await runEvidenceSuite({
+      scenarioId,
+      reportRoot: output
+    });
+    if (options.json) {
+      process.stdout.write(`${JSON.stringify(results, null, 2)}\n`);
+      return;
+    }
+    for (const result of results) {
+      process.stdout.write(`${result.scenario}: ${result.validation.directoriesMatch && result.validation.filesMatch ? "PASS" : "FAIL"} -> ${result.reportPath}\n`);
+    }
     return;
   }
 

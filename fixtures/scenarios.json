@@ -1,0 +1,16 @@
+{
+  "scenarios": [
+    {
+      "id": "js-only",
+      "description": "A JavaScript-only tree with a directory move and relative import rewrites."
+    },
+    {
+      "id": "python-only",
+      "description": "A Python package reshaped from services into a domain package."
+    },
+    {
+      "id": "mixed-chaos",
+      "description": "A mixed JavaScript and Python repo with two independent subtree moves."
+    }
+  ]
+}

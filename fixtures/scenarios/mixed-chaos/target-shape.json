@@ -1,0 +1,37 @@
+{
+  "root": ".",
+  "directories": [
+    "web",
+    "web/src",
+    "web/src/core",
+    "web/src/core/widgets",
+    "service",
+    "service/app",
+    "service/app/domain",
+    "service/app/domain/steps"
+  ],
+  "files": [
+    "web/src/index.js",
+    "web/src/core/api.js",
+    "web/src/core/codec.js",
+    "web/src/core/widgets/index.js",
+    "web/src/core/widgets/chart.js",
+    "web/src/core/widgets/table.js",
+    "service/app/__init__.py",
+    "service/app/main.py",
+    "service/app/domain/__init__.py",
+    "service/app/domain/pipeline.py",
+    "service/app/domain/steps/__init__.py",
+    "service/app/domain/steps/collector.py"
+  ],
+  "moves": [
+    {
+      "from": "web/src/legacy",
+      "to": "web/src/core"
+    },
+    {
+      "from": "service/app/legacy",
+      "to": "service/app/domain"
+    }
+  ]
+}
